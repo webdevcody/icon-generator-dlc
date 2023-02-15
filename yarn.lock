@@ -1765,6 +1765,11 @@ jmespath@0.16.0:
   resolved "https://registry.yarnpkg.com/jmespath/-/jmespath-0.16.0.tgz#b15b0a85dfd4d930d43e69ed605943c802785076"
   integrity sha512-9FzQjJ7MATs1tSpnco1K6ayiYE3figslrXA72G2HQ/n76RzvYlofyi5QM+iX4YRs/pu3yzxlVQSST23+dMDknw==
 
+jotai@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/jotai/-/jotai-2.0.1.tgz#9cc3433a068d6e5f7f2dbb3fe0a3febc5118fc42"
+  integrity sha512-b/BpBFkv3nq8HgT6YX5h5/y9VfKIn9OL1dO6gd9bWTgKt6LLe24VIMURTDwSYS888XfubuRQlbepb5IQGAtmcQ==
+
 js-sdsl@^4.1.4:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/js-sdsl/-/js-sdsl-4.3.0.tgz#aeefe32a451f7af88425b11fdb5f58c90ae1d711"
@@ -1946,11 +1951,6 @@ natural-compare@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
   integrity sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==
-
-next-recaptcha-v3@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/next-recaptcha-v3/-/next-recaptcha-v3-1.1.2.tgz#e05a69c1746f84db8cb7295d5e049d078d52f625"
-  integrity sha512-MD1mRvoj0Xb6wSJxF9T0iy4pg16Ai9m+1+a36aVl/WoXz+NOjiA4+D3ElcssqnhkP4IcOUxC3ZW2tiHZGU1NLQ==
 
 next@13.1.6:
   version "13.1.6"

@@ -4,7 +4,7 @@ import { GrMail } from "react-icons/gr";
 
 export function Footer() {
   return (
-    <footer className="w-full text-white">
+    <footer className="w-full w-full bg-wdc-darker-blue py-12 text-white">
       <div className="container mx-auto flex max-w-screen-lg flex-wrap items-center justify-between">
         <div className="grid w-full grid-cols-3">
           <div>© 2023 Seibert Software Solutions, LLC</div>

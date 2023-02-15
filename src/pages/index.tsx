@@ -1,12 +1,13 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import { type Stripe, loadStripe } from "@stripe/stripe-js";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { api } from "../utils/api";
 import { env } from "../env/client.mjs";
 import Image from "next/image";
-import { Footer } from "../components/Footer";
 import { Spinner } from "../components/Spinner";
+import { useSession } from "../hooks/useSession";
+import Link from "next/link";
 
 const useStripe = () => {
   const stripe = useMemo<Promise<Stripe | null>>(
@@ -20,6 +21,7 @@ const useStripe = () => {
 const Home: NextPage = () => {
   const createCheckout = api.payment.createCheckout.useMutation();
   const stripePromise = useStripe();
+  const { session } = useSession();
 
   async function checkout() {
     const response = await createCheckout.mutateAsync();
@@ -65,15 +67,29 @@ const Home: NextPage = () => {
               CSS, Prisma, Typescript, and tRPC.
             </p>
 
-            <button
-              className="rounded bg-gradient-to-r from-wdc-primary-darker to-blue-400 px-4 py-3 text-xl text-white hover:to-blue-500"
-              disabled={createCheckout.isLoading}
-              onClick={() => {
-                checkout().catch(console.error);
-              }}
-            >
-              {createCheckout.isLoading ? <Spinner /> : <span>$59.00</span>}
-            </button>
+            {!session ? (
+              <button
+                className="rounded bg-gradient-to-r from-wdc-primary-darker to-blue-400 px-4 py-3 text-xl text-white hover:to-blue-500"
+                disabled={createCheckout.isLoading}
+                onClick={() => {
+                  checkout().catch(console.error);
+                }}
+              >
+                {createCheckout.isLoading ? <Spinner /> : <span>$59.00</span>}
+              </button>
+            ) : (
+              <Link href="/dlc">
+                <button
+                  className="w-full rounded bg-gradient-to-r from-wdc-primary-darker to-blue-400 px-4 py-3 text-xl text-white hover:to-blue-500"
+                  disabled={createCheckout.isLoading}
+                  onClick={() => {
+                    checkout().catch(console.error);
+                  }}
+                >
+                  View Your Content
+                </button>
+              </Link>
+            )}
           </div>
 
           <Image
@@ -84,10 +100,6 @@ const Home: NextPage = () => {
             src="/generator.png"
           />
         </section>
-
-        <div className="w-full bg-wdc-darker-blue py-12">
-          <Footer />
-        </div>
       </main>
     </>
   );

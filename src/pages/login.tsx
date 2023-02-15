@@ -5,11 +5,13 @@ import { api } from "../utils/api";
 import { useRouter } from "next/router";
 import { Footer } from "../components/Footer";
 import Image from "next/image";
+import { useSession } from "../hooks/useSession";
 
 const LoginPage: NextPage = () => {
   const [error, setError] = useState("");
   const [email, setEmail] = useState("");
   const router = useRouter();
+  const { setSession } = useSession();
 
   const isPaid = api.payment.isPaidEmail.useQuery(
     { email },
@@ -25,7 +27,8 @@ const LoginPage: NextPage = () => {
       .then(({ data }) => {
         if (data?.isValid) {
           setEmail("");
-          router.push(`/dlc?email=${email}`).catch(console.error);
+          setSession(email);
+          router.push("/dlc").catch(console.error);
         } else {
           setError("invalid login");
         }
@@ -66,7 +69,7 @@ const LoginPage: NextPage = () => {
                   name="email"
                   placeholder="your-email@example.com"
                 ></input>
-                <button className="text-md w-80 rounded bg-gradient-to-r from-wdc-primary-darker to-blue-400 py-3 px-4 py-2 text-white hover:to-blue-500">
+                <button className="text-md w-80 rounded bg-gradient-to-r from-wdc-primary-darker to-blue-400 py-3 px-4 text-white hover:to-blue-500">
                   Sign In
                 </button>
               </fieldset>

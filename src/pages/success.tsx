@@ -3,11 +3,13 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { Spinner } from "../components/Spinner";
+import { useSession } from "../hooks/useSession";
 import { api } from "../utils/api";
 
 const Success: NextPage = () => {
   const router = useRouter();
   const sessionId = useRouter().query.session_id as string;
+  const { setSession } = useSession();
 
   const session = api.payment.getStripeSession.useQuery(
     { sessionId },
@@ -19,9 +21,10 @@ const Success: NextPage = () => {
 
   useEffect(() => {
     if (session.data?.email) {
-      router.push(`/dlc?email=${session.data.email}`).catch(console.error);
+      setSession(session.data.email);
+      router.push("/dlc").catch(console.error);
     }
-  }, [session.data, router]);
+  }, [setSession, session.data, router]);
 
   return (
     <>
