@@ -1,0 +1,4 @@
+- IaC
+- Ci Cd
+- iam managed via terraform
+- local s3 bucket s3rver
